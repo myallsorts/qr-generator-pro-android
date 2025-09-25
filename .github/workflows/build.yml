@@ -1,0 +1,86 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [ published ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: Cache Gradle packages
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+          
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+      
+    - name: Build with Gradle
+      run: ./gradlew assembleDebug
+      
+    - name: Upload APK artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: app-debug-apk
+        path: app/build/outputs/apk/debug/app-debug.apk
+        
+    - name: Build Release APK
+      if: github.event_name == 'release'
+      run: ./gradlew assembleRelease
+      
+    - name: Upload Release APK
+      if: github.event_name == 'release'
+      uses: actions/upload-artifact@v3
+      with:
+        name: app-release-apk
+        path: app/build/outputs/apk/release/app-release.apk
+        
+    - name: Create Release
+      if: github.event_name == 'release'
+      uses: softprops/action-gh-release@v1
+      with:
+        files: app/build/outputs/apk/release/app-release.apk
+        body: |
+          ## QR Generator Pro Android App v${{ github.event.release.tag_name }}
+          
+          ### What's New
+          - Real-time website monitoring
+          - Push notifications for site status
+          - Background service for continuous monitoring
+          - Performance metrics tracking
+          
+          ### Installation
+          1. Download the APK file
+          2. Enable "Install from unknown sources" in Android settings
+          3. Install the APK
+          4. Grant notification permissions
+          5. Start monitoring your website!
+          
+          ### Features
+          - ✅ Website uptime monitoring
+          - ⚡ Performance tracking
+          - 🔔 Push notifications
+          - 📊 Real-time stats
+          - 🔄 Auto-start on boot
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
