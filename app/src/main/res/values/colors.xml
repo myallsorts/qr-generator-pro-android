@@ -10,4 +10,14 @@
     <color name="text_secondary">#757575</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    
+    <!-- Additional colors for notifications -->
+    <color name="primary_text_color">#212121</color>
+    <color name="secondary_text_color">#757575</color>
+    <color name="tertiary_text_color">#9E9E9E</color>
+    <color name="divider_color">#E0E0E0</color>
+    <color name="notification_success_color">#4CAF50</color>
+    <color name="notification_warning_color">#FF9800</color>
+    <color name="notification_error_color">#F44336</color>
+    <color name="notification_info_color">#2196F3</color>
 </resources>

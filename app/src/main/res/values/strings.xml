@@ -17,4 +17,10 @@
     <string name="website_url">https://qrcodegen.allsortswebdesigners.co.za/</string>
     <string name="api_status_url">https://qrcodegen.allsortswebdesigners.co.za/status.json</string>
     <string name="api_notifications_url">https://qrcodegen.allsortswebdesigners.co.za/notifications.json</string>
+    
+    <!-- Notification Activity Strings -->
+    <string name="notifications_title">Notifications</string>
+    <string name="refresh_notifications">Refresh notifications</string>
+    <string name="no_notifications">No notifications yet</string>
+    <string name="loading_notifications">Loading notifications from server...</string>
 </resources>

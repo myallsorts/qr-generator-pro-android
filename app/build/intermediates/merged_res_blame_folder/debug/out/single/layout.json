@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "com.allsortswebdesigners.qrgeneratorpro.app-mergeDebugResources-40:/layout/activity_notifications.xml",
+        "source": "com.allsortswebdesigners.qrgeneratorpro.app-main-43:/layout/activity_notifications.xml"
+    },
+    {
+        "merged": "com.allsortswebdesigners.qrgeneratorpro.app-mergeDebugResources-40:/layout/activity_main.xml",
+        "source": "com.allsortswebdesigners.qrgeneratorpro.app-main-43:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.allsortswebdesigners.qrgeneratorpro.app-mergeDebugResources-40:/layout/item_notification.xml",
+        "source": "com.allsortswebdesigners.qrgeneratorpro.app-main-43:/layout/item_notification.xml"
+    }
+]
